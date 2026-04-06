@@ -245,6 +245,8 @@ class Settings(BaseSettings):
         else:
             db_connect = f"sqlite:///{self.DATABASE_NAME}.db"
         return db_connect
+    #alembic 不支持异步，所以迁移用同步；FastAPI 业务查询用异步。
+    # 这就是为什么项目里两个都要有。
 
     @property
     def REDIS_URI(self) -> str:

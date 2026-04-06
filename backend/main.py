@@ -33,7 +33,7 @@ def create_app() -> FastAPI:
     # 初始化日志
     setup_logging()
     # 注册各种组件
-    register_exceptions(app)
+    register_exceptions(app) #自定义异常基类
     # 注册中间件
     register_middlewares(app)
     # 注册路由

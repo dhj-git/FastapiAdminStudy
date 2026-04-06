@@ -49,3 +49,8 @@ pnpm run build
 # 运行命令，查看未用到的依赖
 depcheck
 ```
+
+前端部分
+配置前端API：在 frontend/src/api/ 目录下创建对应的API文件
+编写页面组件：在 frontend/src/views/ 目录下创建页面组件
+注册路由：在 frontend/src/router/index.ts 中注册路由
