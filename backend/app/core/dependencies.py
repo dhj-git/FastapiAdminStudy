@@ -248,7 +248,7 @@ class AuthPermission:
         - permissions (list[str] | None): 权限标识列表。
         - check_data_scope (bool): 是否启用严格模式校验。
         """
-        self.permissions = permissions or []
+        self.permissions = permissions or [] #["module_system:dict_type:detail"]
         self.check_data_scope = check_data_scope
 
     async def __call__(self, auth: AuthSchema = Depends(get_current_user)) -> AuthSchema:

@@ -32,11 +32,11 @@ DictRouter = APIRouter(route_class=OperationLogRoute, prefix="/dict", tags=["字
     "/type/detail/{id}",
     summary="获取字典类型详情",
     description="获取字典类型详情",
-    response_model=ResponseSchema[DictTypeOutSchema],
+    response_model=ResponseSchema[DictTypeOutSchema],#定义返回的数据结构
 )
 async def get_type_detail_controller(
     id: Annotated[int, Path(description="字典类型ID", ge=1)],
-    auth: Annotated[AuthSchema, Depends(AuthPermission(["module_system:dict_type:detail"]))],
+    auth: Annotated[AuthSchema, Depends(AuthPermission(["module_system:dict_type:detail"]))], #校验用户是否登录 + 校验用户是否有权限访问这个接口
 ) -> JSONResponse:
     """
     获取字典类型详情

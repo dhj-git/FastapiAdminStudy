@@ -11,15 +11,16 @@ from starlette.background import BackgroundTask
 from app.common.constant import RET
 
 
-class ResponseSchema(BaseModel, Generic[T]):
+class ResponseSchema(BaseModel, Generic[T]): #统一 API 响应包装通用响应壳
     """响应模型"""
 
-    code: int = Field(default=RET.OK.code, description="业务状态码")
-    msg: str = Field(default=RET.OK.msg, description="响应消息")
-    data: T | None = Field(default=None, description="响应数据")
-    status_code: int = Field(default=status.HTTP_200_OK, description="HTTP状态码")
-    success: bool = Field(default=True, description="操作是否成功")
+    code: int = Field(default=RET.OK.code, description="业务状态码") #业务状态码（不是HTTP状态码）
+    msg: str = Field(default=RET.OK.msg, description="响应消息") # 提示信息
+    data: T | None = Field(default=None, description="响应数据") # 真正业务数据（泛型） 这块儿还是需要理解一下
+    status_code: int = Field(default=status.HTTP_200_OK, description="HTTP状态码") # HTTP状态码
+    success: bool = Field(default=True, description="操作是否成功") # 是否成功
 
+#例子：ResponseSchema[DictTypeOutSchema] ，意思是：data 字段的类型 = DictTypeOutSchema
 
 class SuccessResponse(JSONResponse):
     """成功响应类"""

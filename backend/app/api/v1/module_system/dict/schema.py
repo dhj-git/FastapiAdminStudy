@@ -44,7 +44,7 @@ class DictTypeUpdateSchema(DictTypeCreateSchema):
     """字典类型更新模型"""
 
 
-class DictTypeOutSchema(DictTypeCreateSchema, BaseSchema):
+class DictTypeOutSchema(DictTypeCreateSchema, BaseSchema):#多重继承，Pydantic 会按 MRO 合并字段（如果字段名重复保留更靠前的那个）
     """字典类型响应模型"""
 
     model_config = ConfigDict(from_attributes=True)
