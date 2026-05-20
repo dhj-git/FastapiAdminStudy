@@ -154,7 +154,7 @@ async def reset_password_controller(
     "/register",
     summary="注册用户",
     description="注册用户",
-    response_model=ResponseSchema[UserOutSchema],
+    response_model=ResponseSchema[UserOutSchema], #告诉fastapi这个接口“理论上”应该返回什么结构，fastapi用它做1.自动过滤返回字段2.自动序列化 3.接口文档里展示的文档生成
 )
 async def register_user_controller(
     data: UserRegisterSchema,
@@ -173,7 +173,7 @@ async def register_user_controller(
     auth = AuthSchema(db=db)
     user_register_result = await UserService.register_user_service(data=data, auth=auth)
     log.info(f"{data.username} 注册用户成功: {user_register_result}")
-    return SuccessResponse(data=user_register_result, msg="注册用户成功")
+    return SuccessResponse(data=user_register_result, msg="注册用户成功") #真正返回给前端的数据结构
 
 
 @UserRouter.post(

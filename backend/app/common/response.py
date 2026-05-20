@@ -52,7 +52,7 @@ class SuccessResponse(JSONResponse):
             data=data,
             status_code=status_code,
             success=success,
-        ).model_dump()
+        ).model_dump() ## 转成 dict
         super().__init__(content=jsonable_encoder(content), status_code=status_code)
 
 
